@@ -46,7 +46,7 @@ def process_image():
     #img = Image.open(file.stream)
     #img_tensor = transform(img)
 
-    outputs = model_ft(torch.stack( [img_tensor.to('mps').float()], dim=0) )
+    outputs = model_ft(torch.stack( [img_tensor.to('mps').float() / 255.0], dim=0) )
     probs = torch.nn.functional.softmax(outputs, dim=1)
     
     if uname not in PERSON_DB:
